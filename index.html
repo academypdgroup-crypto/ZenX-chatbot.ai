@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zen X – AI Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0d6efd">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(() => console.log("Service Worker Registered ✅"))
+                .catch(err => console.error("SW Error:", err));
+        }
+    </script>
+
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="brand">
+            <div class="logo">Zen X</div>
+            <div class="brand-text">
+                <h1>Zen X - Ai Chat Bot</h1>
+                <span class="tagline">Calm. Clever. Conversational.</span>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="btn ghost" id="newChatBtn" title="New chat">New</button>
+            <button class="btn toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle dark mode">
+          <span class="toggle-knob"></span>
+        </button>
+        </div>
+    </header>
+
+    <main class="layout">
+        <aside class="sidebar" aria-label="Conversations">
+            <div class="sidebar-header">
+                <h2>Conversations</h2>
+
+            </div>
+            <nav id="history" class="history"></nav>
+        </aside>
+
+        <section class="chat-shell" aria-label="Chat area">
+            <div id="chat" class="chat" role="log" aria-live="polite"></div>
+
+            <form id="composer" class="composer" autocomplete="off">
+                <textarea id="input" rows="1" placeholder="Type a message…"></textarea>
+                <div class="controls">
+                    <input type="file" id="file" class="hidden" />
+                    <button type="button" class="icon-btn" id="attachBtn" title="Attach file" aria-label="Attach file">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 6.5v9a4.5 4.5 0 1 1-9 0v-10a3 3 0 1 1 6 0v9a1.5 1.5 0 1 1-3 0v-8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+                    <button type="submit" class="btn primary" id="sendBtn" title="Send">Send</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <template id="msgTemplate">
+      <div class="msg">
+        <div class="avatar" data-role=""></div>
+        <div class="bubble">
+          <div class="text"></div>
+          <div class="meta"></div>
+        </div>
+      </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
